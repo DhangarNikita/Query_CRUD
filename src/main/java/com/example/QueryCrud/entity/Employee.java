@@ -26,6 +26,5 @@ public class Employee {
 
     @NotNull(message = "Salary cannot be null")
     @Min(value = 1000, message = "Salary must be at least 1000")
-    @Max(value = 100000, message = "Salary must not exceed 100000")
     Double salary;
 }
