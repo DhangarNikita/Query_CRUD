@@ -2,6 +2,7 @@ package com.example.QueryCrud.controller;
 
 import com.example.QueryCrud.entity.Employee;
 import com.example.QueryCrud.service.EmployeeService;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -15,7 +16,7 @@ public class EmployeeController {
     private EmployeeService employeeService;
 
     @PostMapping("/post")
-    public ResponseEntity<String> addEmployee(@RequestBody Employee employee) {
+    public ResponseEntity<String> addEmployee(@Valid@RequestBody Employee employee) {
         employeeService.insertEmployee(employee.getName(), employee.getDepartment(), employee.getSalary());
         return ResponseEntity.ok("Data inserted successfully");
     }
@@ -26,7 +27,7 @@ public class EmployeeController {
     }
 
     @PutMapping("/update/{id}")
-    public ResponseEntity<String> updateSalary(@PathVariable("id") Long id, @RequestBody Employee employee) {
+    public ResponseEntity<String> updateSalary(@PathVariable("id") Long id, @Valid@RequestBody Employee employee) {
         employeeService.updateEmployee(id, employee.getSalary());
         return ResponseEntity.ok("Salary updated successfully");
     }
